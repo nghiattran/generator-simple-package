@@ -17,6 +17,10 @@ describe('generator-simple-package', function () {
 
     helpers.run(path.join(__dirname, '../generators/app'))
       .withPrompts(this.answers)
+      .on('err', function (err) {
+        console.log(err);
+        done
+      })
       .on('end', done);
   });
 
