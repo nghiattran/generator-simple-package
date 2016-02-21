@@ -18,14 +18,11 @@ module.exports = yeoman.generators.Base.extend({
     this.props = {};
     var that = this;
     if (this.email !== '') {
-      console.log(this.email)
-      console.log('here')
       githubUsername(this.email, function (err, username) {
         that.gitUsername = username || that.name || '';
         done();
       })
     } else {
-      console.log('there')
       that.gitUsername = that.name || '';
       done();
     }
@@ -37,7 +34,7 @@ module.exports = yeoman.generators.Base.extend({
     this.log(yosay(
       'Welcome to the terrific ' + chalk.red('generator-simple-package') + ' generator!'
     ));
-    console.log('where')
+    
     var prompts = [{
       type: 'input',
       name: 'appName',
@@ -116,7 +113,6 @@ module.exports = yeoman.generators.Base.extend({
       repository: repository
     }
 
-    console.log( this.pkg);
     var dotFiles = [
       'gitignore', 
       'jshintrc', 
@@ -160,14 +156,14 @@ module.exports = yeoman.generators.Base.extend({
     }
     // Borrow from generator-node
     // https://github.com/yeoman/generator-node/blob/8db5ce1ec6948d55d5c518e7f96aabf836b2081c/generators/git/index.js#L72
-    // gitRemoteOriginUrl().then(url => {
-    //   yeoSayBye(this);
-    // })
-    // .catch(err => {
-    //   this.spawnCommandSync('git', ['init']);
-    //   var repoSSH = 'git@github.com:' + this.pkg.repository + '.git';
-    //   this.spawnCommandSync('git', ['remote', 'add', 'origin', repoSSH]);
-    //   yeoSayBye(this);
-    // })
+    gitRemoteOriginUrl().then(url => {
+      yeoSayBye(this);
+    })
+    .catch(err => {
+      this.spawnCommandSync('git', ['init']);
+      var repoSSH = 'git@github.com:' + this.pkg.repository + '.git';
+      this.spawnCommandSync('git', ['remote', 'add', 'origin', repoSSH]);
+      yeoSayBye(this);
+    })
   }
 });
