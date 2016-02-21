@@ -18,11 +18,13 @@ module.exports = yeoman.generators.Base.extend({
     this.props = {};
     var that = this;
     if (this.email === '') {
+      console.log('here')
       githubUsername(this.email, function (err, username) {
         that.gitUsername = username || that.name || '';
         done();
       })
     } else {
+      console.log('there')
       that.gitUsername = that.name || '';
       done();
     }
@@ -34,7 +36,7 @@ module.exports = yeoman.generators.Base.extend({
     this.log(yosay(
       'Welcome to the terrific ' + chalk.red('generator-simple-package') + ' generator!'
     ));
-
+    console.log('where')
     var prompts = [{
       type: 'input',
       name: 'appName',
@@ -96,7 +98,7 @@ module.exports = yeoman.generators.Base.extend({
     var repository = '';
     var repositoryUrl = '';
 
-    if (this.props.gitUsername) {
+    if (this.props.gitUsername != '') {
       repository = path.join(this.props.gitUsername, this.props.appName);
       repositoryUrl = path.join('https://github.com/', repository);
     };
