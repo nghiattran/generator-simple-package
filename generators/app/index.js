@@ -16,6 +16,9 @@ module.exports = yeoman.generators.Base.extend({
     console.log('here')
     this.email = this.user.git.email() || '';
     console.log('here')
+    this.appName = _.kebabCase(path.basename(process.cwd()));
+    this.props = {};
+    console.log('here')
     try {
       this.user.github.username(function(err, username){
         console.log(err)
@@ -25,9 +28,8 @@ module.exports = yeoman.generators.Base.extend({
       }.bind(this));
     } catch(err){
       this.gitUsername = null;
+      done(); 
     }
-    this.appName = _.kebabCase(path.basename(process.cwd()));
-    this.props = {};
   },
 
   prompting: function () {
