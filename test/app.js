@@ -17,9 +17,7 @@ describe('generator-simple-package', function () {
 
     helpers.run(path.join(__dirname, '../generators/app'))
       .withPrompts(this.answers)
-      .on('end', function (res) {
-        done();
-      });
+      .on('end', done);
   });
 
   it('creates files', function () {

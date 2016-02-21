@@ -5,7 +5,6 @@ var yosay = require('yosay');
 var path = require('path');
 var _ = require('lodash');
 var gitRemoteOriginUrl = require('git-remote-origin-url');
-var askName = require('inquirer-npm-name');
 var nameUsed = require('name-used');
 
 module.exports = yeoman.generators.Base.extend({
@@ -118,7 +117,7 @@ module.exports = yeoman.generators.Base.extend({
       '.gitignore', 
       '.jshintrc', 
       '.travis.yml', 
-      '.README.md', 
+      'README.md', 
       'editorconfig', 
       'index.js', 
       'license', 
