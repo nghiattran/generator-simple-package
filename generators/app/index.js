@@ -12,18 +12,18 @@ module.exports = yeoman.generators.Base.extend({
 
   initializing: function () {
     var done = this.async();
-    this.name = this.user.git.name() || null;
-    this.email = this.user.git.email() || null;
+    this.name = this.user.git.name() || '';
+    this.email = this.user.git.email() || '';
     this.appName = _.kebabCase(path.basename(process.cwd()));
     this.props = {};
     var that = this;
     if (this.email) {
       githubUsername(this.email, function (err, username) {
-        that.gitUsername = username || that.name;
+        that.gitUsername = username || that.name || '';
         done();
       })
     } else {
-      that.gitUsername = username || that.name || null;
+      that.gitUsername = that.name || '';
       done();
     }
   },
@@ -93,9 +93,13 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   writing: function () {
-    console.log(this.props);
-    var repository = path.join(this.props.gitUsername, this.props.appName);
-    var repositoryUrl = path.join('https://github.com/', repository);
+    var repository = '';
+    var repositoryUrl = '';
+
+    if (this.props.gitUsername) {
+      repository = path.join(this.props.gitUsername, this.props.appName);
+      repositoryUrl = path.join('https://github.com/', repository);
+    };
 
     this.pkg = {
       appName: this.props.appName,
@@ -109,6 +113,7 @@ module.exports = yeoman.generators.Base.extend({
       repository: repository
     }
 
+    console.log( this.pkg);
     var dotFiles = [
       'gitignore', 
       'jshintrc', 
