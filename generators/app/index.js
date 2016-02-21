@@ -88,6 +88,7 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   writing: function () {
+    console.log(this.props);
     var repository = path.join(this.props.gitUsername, this.props.appName);
     var repositoryUrl = path.join('https://github.com/', repository);
 
