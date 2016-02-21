@@ -1,6 +1,6 @@
 {
   "name": "generator-simple-package",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "",
   "homepage": "",
   "author": {
@@ -21,6 +21,7 @@
     "lodash": "^4.5.0",
     "name-used": "^1.1.0",
     "yeoman-generator": "^0.21.1",
+    "yeoman-test": "^1.1.0",
     "yosay": "^1.0.2"
   },
   "devDependencies": {
@@ -35,7 +36,6 @@
   },
   "repository": "nghiattran/generator-simple-package",
   "scripts": {
-    "prepublish": "gulp prepublish",
     "test": "gulp"
   },
   "license": "MIT"

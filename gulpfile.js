@@ -8,10 +8,6 @@ var nsp = require('gulp-nsp');
 var plumber = require('gulp-plumber');
 var coveralls = require('gulp-coveralls');
 
-gulp.task('nsp', function (cb) {
-  nsp({package: path.resolve('package.json')}, cb);
-});
-
 gulp.task('pre-test', function () {
   return gulp.src('generators/*.js')
     .pipe(excludeGitignore())
@@ -49,5 +45,4 @@ gulp.task('coveralls', ['test'], function () {
     .pipe(coveralls());
 });
 
-gulp.task('prepublish', ['nsp']);
 gulp.task('default', ['test', 'coveralls']);
