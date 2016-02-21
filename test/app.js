@@ -20,7 +20,7 @@ describe('generator-simple-package', function () {
       .withOptions({someOption: true})
       .on('error', function (err) {
         console.log(err);
-        done
+        done();
       })
       .on('end', done);
   });

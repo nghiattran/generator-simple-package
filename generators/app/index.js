@@ -11,24 +11,12 @@ module.exports = yeoman.generators.Base.extend({
 
   initializing: function () {
     var done = this.async();
-    console.log(this.user)
-    // console.log(this.user.git.name())
-    // console.log(this.user.git.email())
-    try{
-      if (this.user) {
-        this.name = this.user.git.name() || '';
-        this.email = this.user.git.email() || '';
-        this.user.github.username(function(err, username){
-          console('err': err)
-          console('username': username)
-          this.gitUsername = username || '';
-          done();
-        }.bind(this));
-      };
-    } catch(err) {
-      console.log('err:' err)
-    }
-    console.log(this.user)
+    this.name = this.user.git.name() || '';
+    this.email = this.user.git.email() || '';
+    this.user.github.username(function(err, username){
+      this.gitUsername = username || '';
+      done();
+    }.bind(this));
     this.appName = _.kebabCase(path.basename(process.cwd()));
     this.props = {};
   },
