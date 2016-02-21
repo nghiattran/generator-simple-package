@@ -17,7 +17,7 @@ module.exports = yeoman.generators.Base.extend({
     this.appName = _.kebabCase(path.basename(process.cwd()));
     this.props = {};
     var that = this;
-    if (this.email) {
+    if (this.email === '') {
       githubUsername(this.email, function (err, username) {
         that.gitUsername = username || that.name || '';
         done();
