@@ -6,30 +6,21 @@ var path = require('path');
 var _ = require('lodash');
 var gitRemoteOriginUrl = require('git-remote-origin-url');
 var nameUsed = require('name-used');
+var githubUsername = require('github-username');
 
 module.exports = yeoman.generators.Base.extend({
 
   initializing: function () {
     var done = this.async();
-    console.log('here')
     this.name = this.user.git.name() || '';
-    console.log('here')
     this.email = this.user.git.email() || '';
-    console.log('here')
     this.appName = _.kebabCase(path.basename(process.cwd()));
     this.props = {};
-    console.log('here')
-    try {
-      this.user.github.username(function(err, username){
-        console.log(err)
-        console.log(username)
-        this.gitUsername = username || '';
-        done();
-      }.bind(this));
-    } catch(err){
-      this.gitUsername = null;
-      done(); 
-    }
+    var that = this;
+    githubUsername(this.email, function (err, username) {
+      that.gitUsername = username || that.name;
+      done();
+    })
   },
 
   prompting: function () {
