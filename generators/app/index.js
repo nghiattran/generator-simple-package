@@ -11,7 +11,7 @@ module.exports = yeoman.generators.Base.extend({
 
   initializing: function () {
     var done = this.async();
-
+    console.log(this.user)
     if (this.user) {
       this.name = this.user.git.name() || '';
       this.email = this.user.git.email() || '';
