@@ -7,7 +7,6 @@ var _ = require('lodash');
 var gitRemoteOriginUrl = require('git-remote-origin-url');
 var askName = require('inquirer-npm-name');
 var nameUsed = require('name-used');
-// Taken from generator-generator
 
 module.exports = yeoman.generators.Base.extend({
 
@@ -27,7 +26,7 @@ module.exports = yeoman.generators.Base.extend({
     var done = this.async();
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the terrific ' + chalk.red('generator-simple-node') + ' generator!'
+      'Welcome to the terrific ' + chalk.red('generator-simple-package') + ' generator!'
     ));
 
     var prompts = [{
@@ -36,19 +35,19 @@ module.exports = yeoman.generators.Base.extend({
       message: 'Your generator name',
       default: this.appName
     }
-    ,{
-      type: 'confirm',
-      name: 'exist',
-      message: 'The name above already exists on npm, choose another?',
-      default: true,
-      when: function (answers) {
-        var done = this.async();
-        nameUsed(answers.appName)
-          .then(function (res) {
-            done(res);
-          })
-      }
-    }
+    // ,{
+    //   type: 'confirm',
+    //   name: 'exist',
+    //   message: 'The name above already exists on npm, choose another?',
+    //   default: true,
+    //   when: function (answers) {
+    //     var done = this.async();
+    //     nameUsed(answers.appName)
+    //       .then(function (res) {
+    //         done(res);
+    //       })
+    //   }
+    // }
     ,{
       type: 'input',
       name: 'desc',
@@ -67,12 +66,14 @@ module.exports = yeoman.generators.Base.extend({
       type: 'input',
       name: 'authorUrl',
       message: "Author's Homepage"
-    },{
-      type: 'confirm',
-      name: 'cover',
-      message: 'Send coverage reports to coveralls',
-      default: true
-    },{
+    }
+    // ,{
+    //   type: 'confirm',
+    //   name: 'cover',
+    //   message: 'Send coverage reports to coveralls',
+    //   default: true
+    // }
+    ,{
       type: 'input',
       name: 'gitUsername',
       message: 'GitHub username or organization',
@@ -115,16 +116,26 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    this.installDependencies();
+    this.npmInstall();
   },
 
   end: function () {
+
+    var yeoSayBye = function (that) {
+      that.log(yosay(
+        'Enjoy your time with ' + chalk.red('generator-simple-package') + ' generator!'
+      ));
+    }
     // Borrow from generator-node
     // https://github.com/yeoman/generator-node/blob/8db5ce1ec6948d55d5c518e7f96aabf836b2081c/generators/git/index.js#L72
-    this.spawnCommandSync('git', ['init']);
-    if (!this.originUrl) {
+    gitRemoteOriginUrl().then(url => {
+      yeoSayBye(this);
+    })
+    .catch(err => {
+      this.spawnCommandSync('git', ['init']);
       var repoSSH = 'git@github.com:' + this.pkg.repository + '.git';
       this.spawnCommandSync('git', ['remote', 'add', 'origin', repoSSH]);
-    }
+      yeoSayBye(this);
+    })
   }
 });
