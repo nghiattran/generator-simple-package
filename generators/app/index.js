@@ -18,6 +18,7 @@ module.exports = yeoman.generators.Base.extend({
     this.props = {};
     var that = this;
     if (this.email === '') {
+      console.log(this.email)
       console.log('here')
       githubUsername(this.email, function (err, username) {
         that.gitUsername = username || that.name || '';
