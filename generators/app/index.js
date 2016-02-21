@@ -101,10 +101,12 @@ module.exports = yeoman.generators.Base.extend({
       repository: repository
     }
 
-    var template = [
+    var dotFiles = [
       'gitignore', 
       'jshintrc', 
-      'travis.yml', 
+      'travis.yml'
+    ]
+    var normalFiles = [ 
       'README.md', 
       'editorconfig', 
       'index.js', 
@@ -113,23 +115,18 @@ module.exports = yeoman.generators.Base.extend({
       'test.js'
     ];
 
-    var file = [
-      '.gitignore', 
-      '.jshintrc', 
-      '.travis.yml', 
-      'README.md', 
-      'editorconfig', 
-      'index.js', 
-      'license', 
-      'package.json', 
-      'test.js'
-    ];
-
-    for (var i = 0; i < template.length; i++) {
+    for (var i = 0; i < normalFiles.length; i++) {
       this.fs.copyTpl(
-        this.templatePath(template[i]),
-        this.destinationPath(file[i]),
+        this.templatePath(normalFiles[i]),
+        this.destinationPath(normalFiles[i]),
         this.pkg
+      );
+    };
+
+    for (var i = 0; i < dotFiles.length; i++) {
+      this.fs.copy(
+        this.templatePath(dotFiles[i]),
+        this.destinationPath('.' + dotFiles[i])
       );
     };
   },
