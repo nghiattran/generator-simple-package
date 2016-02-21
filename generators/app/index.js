@@ -11,7 +11,7 @@ module.exports = yeoman.generators.Base.extend({
 
   initializing: function () {
     var done = this.async();
-    
+
     if (this.user) {
       this.name = this.user.git.name() || '';
       this.email = this.user.git.email() || '';
@@ -20,7 +20,7 @@ module.exports = yeoman.generators.Base.extend({
         done();
       }.bind(this));
     };
-
+    console.log(this.user)
     this.appName = _.kebabCase(path.basename(process.cwd()));
     this.props = {};
   },
