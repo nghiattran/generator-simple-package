@@ -14,6 +14,8 @@ module.exports = yeoman.generators.Base.extend({
     this.name = this.user.git.name() || '';
     this.email = this.user.git.email() || '';
     this.user.github.username(function(err, username){
+      console.log(err)
+      console.log(username)
       this.gitUsername = username || '';
       done();
     }.bind(this));
