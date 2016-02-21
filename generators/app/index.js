@@ -16,12 +16,16 @@ module.exports = yeoman.generators.Base.extend({
     console.log('here')
     this.email = this.user.git.email() || '';
     console.log('here')
-    this.user.github.username(function(err, username){
-      console.log(err)
-      console.log(username)
-      this.gitUsername = username || '';
-      done();
-    }.bind(this));
+    try {
+      this.user.github.username(function(err, username){
+        console.log(err)
+        console.log(username)
+        this.gitUsername = username || '';
+        done();
+      }.bind(this));
+    } catch(err){
+      this.gitUsername = null;
+    }
     this.appName = _.kebabCase(path.basename(process.cwd()));
     this.props = {};
   },
