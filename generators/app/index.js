@@ -102,17 +102,37 @@ module.exports = yeoman.generators.Base.extend({
       repository: repository
     }
 
-    this.fs.copyTpl(
-      this.templatePath('*'),
-      this.destinationPath(),
-      this.pkg
-    );
+    var template = [
+      'gitignore', 
+      'jshintrc', 
+      'travis.yml', 
+      'README.md', 
+      'editorconfig', 
+      'index.js', 
+      'license', 
+      'package.json', 
+      'test.js'
+    ];
 
-    this.fs.copy(
-      this.templatePath('.*'),
-      this.destinationPath()
-    );
+    var file = [
+      '.gitignore', 
+      '.jshintrc', 
+      '.travis.yml', 
+      '.README.md', 
+      'editorconfig', 
+      'index.js', 
+      'license', 
+      'package.json', 
+      'test.js'
+    ];
 
+    for (var i = 0; i < template.length; i++) {
+      this.fs.copyTpl(
+        this.templatePath(template[i]),
+        this.destinationPath(file[i]),
+        this.pkg
+      );
+    };
   },
 
   install: function () {
