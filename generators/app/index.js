@@ -144,14 +144,14 @@ module.exports = yeoman.generators.Base.extend({
     }
     // Borrow from generator-node
     // https://github.com/yeoman/generator-node/blob/8db5ce1ec6948d55d5c518e7f96aabf836b2081c/generators/git/index.js#L72
-    gitRemoteOriginUrl().then(url => {
-      yeoSayBye(this);
-    })
-    .catch(err => {
-      this.spawnCommandSync('git', ['init']);
-      var repoSSH = 'git@github.com:' + this.pkg.repository + '.git';
-      this.spawnCommandSync('git', ['remote', 'add', 'origin', repoSSH]);
-      yeoSayBye(this);
-    })
+    // gitRemoteOriginUrl().then(url => {
+    //   yeoSayBye(this);
+    // })
+    // .catch(err => {
+    //   this.spawnCommandSync('git', ['init']);
+    //   var repoSSH = 'git@github.com:' + this.pkg.repository + '.git';
+    //   this.spawnCommandSync('git', ['remote', 'add', 'origin', repoSSH]);
+    //   yeoSayBye(this);
+    // })
   }
 });
