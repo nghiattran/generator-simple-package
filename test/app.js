@@ -17,7 +17,6 @@ describe('generator-simple-package', function () {
 
     helpers.run(path.join(__dirname, '../generators/app'))
       .withPrompts(this.answers)
-      .withOptions({someOption: true})
       .on('error', function (err) {
         console.log(err);
         done();

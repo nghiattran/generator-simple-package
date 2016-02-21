@@ -148,7 +148,6 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   end: function () {
-
     var yeoSayBye = function (that) {
       that.log(yosay(
         'Enjoy your time with ' + chalk.red('generator-simple-package') + ' generator!'
