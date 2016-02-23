@@ -129,7 +129,7 @@ module.exports = yeoman.generators.Base.extend({
 
     for (var i = 0; i < normalFiles.length; i++) {
       this.fs.copyTpl(
-        this.templatePath(normalFiles[i]),
+        this.templatePath('_' + normalFiles[i]),
         this.destinationPath(normalFiles[i]),
         this.pkg
       );
@@ -137,7 +137,7 @@ module.exports = yeoman.generators.Base.extend({
 
     for (var i = 0; i < dotFiles.length; i++) {
       this.fs.copy(
-        this.templatePath(dotFiles[i]),
+        this.templatePath('_' + dotFiles[i]),
         this.destinationPath('.' + dotFiles[i])
       );
     };
@@ -153,16 +153,19 @@ module.exports = yeoman.generators.Base.extend({
         'Enjoy your time with ' + chalk.red('generator-simple-package') + ' generator!'
       ));
     }
+
+    var that = this;
+
     // Borrow from generator-node
     // https://github.com/yeoman/generator-node/blob/8db5ce1ec6948d55d5c518e7f96aabf836b2081c/generators/git/index.js#L72
     gitRemoteOriginUrl().then(function (url){
-      yeoSayBye(this);
+      yeoSayBye(that);
     })
     .catch(function (url){
-      this.spawnCommandSync('git', ['init']);
-      var repoSSH = 'git@github.com:' + this.pkg.repository + '.git';
-      this.spawnCommandSync('git', ['remote', 'add', 'origin', repoSSH]);
-      yeoSayBye(this);
+      that.spawnCommandSync('git', ['init']);
+      var repoSSH = 'git@github.com:' + that.pkg.repository + '.git';
+      that.spawnCommandSync('git', ['remote', 'add', 'origin', repoSSH]);
+      yeoSayBye(that);
     })
   }
 });
