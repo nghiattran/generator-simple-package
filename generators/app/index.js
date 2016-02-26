@@ -103,6 +103,7 @@ module.exports = yeoman.generators.Base.extend({
 
     this.pkg = {
       appName: this.props.appName,
+      appNameCamel: _.camelCase(this.props.appName),
       authorName: this.props.authorName,
       authorEmail: this.props.authorEmail,
       authorUrl: this.props.authorUrl,

@@ -1,7 +1,10 @@
 # generator-simple-package 
 
+> A super simple generator for npm packages
+
+
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> 
+
 
 ## Installation
 
@@ -15,7 +18,7 @@ npm install -g generator-simple-package
 Then generate your new project:
 
 ```bash
-yo simple-node
+yo simple-package
 ```
 
 ## Gernerate files
