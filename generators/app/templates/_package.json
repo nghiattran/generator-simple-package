@@ -4,8 +4,8 @@
   "description": "<%= desc %>",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "cover": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec"
+    "test": "nyc mocha",
+    "cover": "nyc --reporter=lcov npm test"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -24,8 +24,8 @@
   "dependencies": {},
   "devDependencies": {
     "coveralls": "2.11.2",
-    "istanbul": "0.3.14",
     "mocha": "2.2.5",
-    "mocha-lcov-reporter": "0.0.2"
+    "mocha-lcov-reporter": "0.0.2",
+    "nyc": "^11.0.3"
   }
 }

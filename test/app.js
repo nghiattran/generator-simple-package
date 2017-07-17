@@ -32,7 +32,7 @@ describe('generator-simple-package', function () {
       'README.md',
       'editorconfig',
       'index.js',
-      'license',
+      'LICENSE',
       'package.json',
       'test.js'
     ]);
