@@ -11,7 +11,7 @@
 ## Usage
 
 ```js
-var <%= appNameCamel %> = require('<%= appName %>');
+const <%= appNameCamel %> = require('<%= appName %>');
 ```
 
 ## Getting To Know Yeoman

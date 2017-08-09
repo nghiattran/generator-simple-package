@@ -1,7 +1,7 @@
 'use strict';
 
-var assert = require('assert');
-var <%= appNameCamel %> = require('./');
+const assert = require('assert');
+const <%= appNameCamel %> = require('./');
 
 describe('test', function(){
 

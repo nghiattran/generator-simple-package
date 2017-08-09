@@ -1,6 +1,6 @@
 {
   "name": "generator-simple-package",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "homepage": "",
   "author": {
@@ -16,14 +16,14 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "chalk": "^1.0.0",
+    "chalk": "^2.0.0",
     "git-remote-origin-url": "^2.0.0",
     "github-username": "^2.1.0",
     "lodash": "^4.5.0",
     "name-used": "^1.1.0",
     "yeoman-generator": "^0.21.1",
     "yeoman-test": "^1.1.0",
-    "yosay": "^1.0.2"
+    "yosay": "^2.0.0"
   },
   "devDependencies": {
     "gulp": "^3.9.0",

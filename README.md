@@ -21,7 +21,7 @@ Then generate your new project:
 yo simple-package
 ```
 
-## Gernerate files
+## Gernerated files
 
 ```
 .gitignore
